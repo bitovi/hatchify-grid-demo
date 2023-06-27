@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   backend:
     build:
@@ -9,6 +10,8 @@ services:
     volumes:
       - .:/app
     command: npm run dev:backend
+    networks:
+      - hatch
 
   frontend:
     build:
@@ -19,3 +22,9 @@ services:
     volumes:
       - .:/app
     command: npm run dev:frontend
+    networks:
+      - hatch
+
+networks:
+  hatch:
+    driver: bridge
