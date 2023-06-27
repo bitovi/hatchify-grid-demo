@@ -5,10 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_backend
+    # image: backend:latest
     ports:
       - 3000:3000
-    volumes:
-      - .:/app
+    # volumes:
+    #   - .:/app
     command: npm run dev:backend
     networks:
       - hatch
@@ -17,10 +18,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_frontend
+    # image: frontend:latest
     ports:
       - 5173:5173
-    volumes:
-      - .:/app
+    # volumes:
+    #   - .:/app
     command: npm run dev:frontend
     networks:
       - hatch
