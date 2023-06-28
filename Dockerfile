@@ -10,16 +10,17 @@ RUN apk update && apk add npm nodejs~=18
 COPY package*.json ./
 COPY schemas/ schemas/
 RUN npm install
+ENTRYPOINT ["npm", "run"]
 
 FROM base AS backend
 COPY backend/ backend/
-COPY tsconfig*.json .
+COPY tsconfig*.json ./
 EXPOSE $BACKEND_PORT
-CMD ["npm", "run", "dev:backend"]
+CMD ["dev:backend"]
 
 FROM base AS frontend
 COPY frontend/ frontend/
 COPY public/ public/
 COPY index.html tsconfig.json vite.config.ts ./
 EXPOSE $FRONTEND_PORT
-CMD ["npm", "run", "dev:frontend"]
+CMD ["dev:frontend"]
