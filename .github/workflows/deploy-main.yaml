@@ -29,5 +29,4 @@ jobs:
         domain_name: bitovi-sandbox.com
         sub_domain: hatchify-grid-demo
         no_cert: true
-        app_port: 5173,3000
-        lb_port: 5173,3000
+        app_port: 5173
