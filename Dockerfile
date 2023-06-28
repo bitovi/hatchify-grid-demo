@@ -8,8 +8,8 @@ ENV FRONTEND_PORT=5173
 WORKDIR /app
 RUN apk update && apk add npm nodejs~=18
 COPY package*.json ./
-COPY schemas/ schemas/
 RUN npm install
+COPY schemas/ schemas/
 ENTRYPOINT ["npm", "run"]
 
 FROM base AS backend
