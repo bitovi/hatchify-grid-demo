@@ -1,13 +1,11 @@
-FROM node:18-bullseye-slim AS frontend
+FROM node:18-alpine
+ENV PORT=5173
 
-WORKDIR /app
-
-COPY package*.json .
-
-RUN npm ci
-
+WORKDIR app
 COPY . .
 
-EXPOSE 5173
+COPY package.json .
+RUN npm install
 
-CMD ["npm", "run", "dev:frontend"]
+EXPOSE $PORT
+CMD npm run dev:frontend

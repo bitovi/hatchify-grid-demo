@@ -1,13 +1,11 @@
-FROM node:18-bullseye-slim AS backend
+FROM node:18-alpine
+ENV PORT=3000
 
-WORKDIR /app
-
-COPY package*.json .
-
-RUN npm install
-
+WORKDIR app
 COPY . .
 
-EXPOSE 3000
+COPY package.json .
+RUN npm install
 
-CMD ["npm", "run", "dev:backend"]
+EXPOSE $PORT
+CMD npm run dev:backend
