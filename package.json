@@ -1,7 +1,7 @@
 {
   "name": "hatchify-grid-demo",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "dev:frontend": "vite",

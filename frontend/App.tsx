@@ -5,7 +5,7 @@ import { User } from "../schemas/User";
 
 export const hatchedReact = hatchifyReact(
   { Todo, User },
-  createJsonapiClient("http://localhost:3000/api", {
+  createJsonapiClient("http://hatchify-grid-demo.bitovi-sandbox.com:3000/api", {
     Todo: { endpoint: "todos" },
     User: { endpoint: "users" },
   })
