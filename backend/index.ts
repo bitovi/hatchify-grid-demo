@@ -2,11 +2,10 @@
 import Koa from "koa";
 import cors from "@koa/cors";
 import { hatchifyKoa } from "@hatchifyjs/koa";
-import { Todo } from "../schemas/Todo";
-import { User } from "../schemas/User";
+import { Document } from "../schemas/Document";
 
 const app = new Koa();
-const hatchedKoa = hatchifyKoa([Todo, User], {
+const hatchedKoa = hatchifyKoa([Document], {
   prefix: "/api",
   database: {
     dialect: "sqlite",

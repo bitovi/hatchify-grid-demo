@@ -1,24 +1,26 @@
 // hatchify-app/frontend/App.tsx
-import { hatchifyReact, MuiProvider, createJsonapiClient } from "@hatchifyjs/react";
-import { Todo } from "../schemas/Todo";
-import { User } from "../schemas/User";
+import {
+  hatchifyReact,
+  MuiProvider,
+  createJsonapiClient,
+} from "@hatchifyjs/react";
+import { Document } from "../schemas/Document";
 
 export const hatchedReact = hatchifyReact(
-  { Todo, User },
+  { Document },
   createJsonapiClient("http://hatchify-grid-demo.bitovi-sandbox.com:3000/api", {
-    Todo: { endpoint: "todos" },
-    User: { endpoint: "users" },
+    Document: { endpoint: "documents" },
   })
 );
 
-const TodoList = hatchedReact.components.Todo.List;
+const DocumentList = hatchedReact.components.Document.List;
 
 const App: React.FC = () => {
   return (
     <MuiProvider>
-      <TodoList />
+      <DocumentList />
     </MuiProvider>
-  )
+  );
 };
 
 export default App;
