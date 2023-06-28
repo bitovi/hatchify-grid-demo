@@ -5,7 +5,7 @@ services:
     container_name: backend
     build:
       context: .
-      dockerfile: Dockerfile_backend
+      target: backend
     restart: unless-stopped
     volumes:
       - .:/app
@@ -19,7 +19,7 @@ services:
     container_name: frontend
     build:
       context: .
-      dockerfile: Dockerfile_frontend
+      target: frontend
     restart: unless-stopped
     volumes:
       - .:/app
