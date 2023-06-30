@@ -27,7 +27,7 @@ jobs:
         # Provide a secret called `DOT_ENV` to append environment variables to the .env file
         # dot_env: ${{ secrets.DOT_ENV }}
         domain_name: bitovi-sandbox.com
-        sub_domain: hatchify-grid-demo
+        sub_domain: hatchify-grid-demo-postgres
         no_cert: true
         app_port: "5173,3000"
         lb_port: "5173,3000"
@@ -35,3 +35,5 @@ jobs:
 
         docker_full_cleanup: true
         app_directory_cleanup: true
+
+        aws_enable_postgres: true
