@@ -4,6 +4,7 @@ import cors from "@koa/cors";
 import { hatchifyKoa } from "@hatchifyjs/koa";
 import { Document } from "../schemas/Document";
 import dotenv from "../.env";
+import { Client } from 'pg';
 dotenv.config();
 
 const app = new Koa();
@@ -19,10 +20,10 @@ const hatchedKoa = hatchifyKoa([Document], {
   prefix: "/api",
   database: {
     dialect: "postgres",
-    host: process.env.POSTGRES_CLUSTER_ENDPOINT,
+    host: process.env.PGHOST,
     port: +process.env.POSTGRES_CLUSTER_PORT,
-    username: process.env.POSTGRES_CLUSTER_MASTER_USERNAME,
-    password: process.env.POSTGRES_CLUSTER_MASTER_PASSWORD,
+    username: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
   },
 })
 
