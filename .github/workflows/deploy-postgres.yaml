@@ -37,3 +37,4 @@ jobs:
         app_directory_cleanup: true
 
         aws_enable_postgres: true
+        aws_postgres_database_name: postgres

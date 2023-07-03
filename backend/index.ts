@@ -20,7 +20,7 @@ const hatchedKoa = hatchifyKoa([Document], {
   database: {
     dialect: "postgres",
     host: process.env.PGHOST,
-    port: process.env.PGPORT,
+    port: 5432,
     username: process.env.PG_USER,
     password: process.env.PG_PASSWORD,
   },
