@@ -4,7 +4,6 @@ import cors from "@koa/cors";
 import { hatchifyKoa } from "@hatchifyjs/koa";
 import { Document } from "../schemas/Document";
 import dotenv from "../.env";
-import { Client } from 'pg';
 dotenv.config();
 
 const app = new Koa();

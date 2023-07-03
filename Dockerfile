@@ -9,6 +9,7 @@ WORKDIR /app
 RUN apk update && apk add npm nodejs~=18
 COPY package*.json ./
 RUN npm install
+RUN npm install pg
 COPY schemas/ schemas/
 ENTRYPOINT ["npm", "run"]
 
