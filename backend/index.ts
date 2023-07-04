@@ -3,8 +3,13 @@ import Koa from "koa";
 import cors from "@koa/cors";
 import { hatchifyKoa } from "@hatchifyjs/koa";
 import { Document } from "../schemas/Document";
-import dotenv from "../.env";
-dotenv.config();
+
+const fs = require('fs');
+const rdsCa = fs.readFileSync(__dirname + '/../rds-combined-ca-bundle.pem');
+
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+const port: number = Number(process.env.PGPORT); // Assuming PORT is the environment variable you're trying to assign
 
 const app = new Koa();
 /*const hatchedKoa = hatchifyKoa([Document], {
@@ -19,22 +24,20 @@ const hatchedKoa = hatchifyKoa([Document], {
   prefix: "/api",
   database: {
     dialect: "postgres",
+    dialectOptions: {
+       ssl: {
+         rejectUnauthorized: false,
+         ca: [rdsCa]
+       },
+    },
     host: process.env.PGHOST,
-    port: 5432,
+    port: port,
+    ssl: true,
+    database: process.env.PGDATABASE,
     username: process.env.PG_USER,
     password: process.env.PG_PASSWORD,
   },
 })
-
-
-/*
-| `POSTGRES_CLUSTER_ENDPOINT` (and `PGHOST`) | Writer endpoint for the cluster |
-| `POSTGRES_CLUSTER_PORT` (and `PGPORT`) | The database port |
-| `POSTGRES_CLUSTER_MASTER_PASSWORD` (and `PG_PASSWORD`) | database root password |
-| `POSTGRES_CLUSTER_MASTER_USERNAME` (and `PG_USER`) | The database master username |
-| `POSTGRES_CLUSTER_DATABASE_NAME` (and `PGDATABASE`) | Name for an automatically created database on cluster creation |
-*/
-
 
 app.use(cors());
 app.use(hatchedKoa.middleware.allModels.all);
