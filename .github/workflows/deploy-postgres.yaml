@@ -16,6 +16,16 @@ jobs:
       name: ${{ github.ref_name }}
       url: ${{ steps.deploy.outputs.vm_url }}
     steps:
+    - id: Destroy
+      name: Destroy
+      uses: bitovi/github-actions-deploy-docker-to-ec2@gha-testing
+      with:
+        tf_stack_destroy: true
+        tf_state_bucket_destroy: true
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
+        aws_default_region: us-east-1
+
     - id: deploy-postgres
       name: Deploy with postgres
       uses: bitovi/github-actions-deploy-docker-to-ec2@gha-testing
@@ -32,6 +42,8 @@ jobs:
         app_port: "5173,3000"
         lb_port: "5173,3000"
         lb_healthcheck: "HTTP:5173"
+        
+        aws_ec2_instance_root_vol_size: 20
 
         docker_full_cleanup: true
         app_directory_cleanup: true
