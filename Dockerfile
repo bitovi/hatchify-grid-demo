@@ -16,7 +16,7 @@ FROM base AS backend
 COPY backend/ backend/
 COPY tsconfig*.json ./
 EXPOSE $BACKEND_PORT
-CMD ["dev:backend"]
+CMD ["dev:backend:koa:postgres"]
 
 FROM base AS frontend
 COPY frontend/ frontend/
