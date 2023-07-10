@@ -1,6 +1,6 @@
-import fs from "fs";
+//import fs from "fs";
 import { Options } from "sequelize";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 import { Command } from "commander";
 import Express from "express";
 import Koa from "koa";
@@ -10,7 +10,7 @@ import { hatchifyExpress } from "@hatchifyjs/express";
 import { hatchifyKoa } from "@hatchifyjs/koa";
 import { Document } from "../schemas/Document";
 
-dotenv.config({ path: "../.env" });
+//dotenv.config({ path: "../.env" });
 
 const options = new Command()
   .requiredOption("-f, --framework <express|koa>", "Node framework")
@@ -39,6 +39,14 @@ function getHatchFunction(framework: "express" | "koa") {
 function getDatabaseConfiguration(database: "postgres" | "sqlite"): Options {
   if (database === "postgres")
     return {
+          dialect: "postgres",
+          host: "evergreen.dl.lan",
+          port: 5432,
+          username: "postgres",
+          password: "postgres"
+    };
+ /*   Only for Aurora RDS  
+    return {
       dialect: "postgres",
       dialectOptions: {
         ssl: {
@@ -53,7 +61,7 @@ function getDatabaseConfiguration(database: "postgres" | "sqlite"): Options {
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
     };
-
+*/
   return {
     dialect: "sqlite",
     storage: "example.sqlite",

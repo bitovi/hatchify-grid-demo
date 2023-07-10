@@ -24,3 +24,32 @@ COPY public/ public/
 COPY index.html tsconfig.json vite.config.ts ./
 EXPOSE $FRONTEND_PORT
 CMD ["dev:frontend"]
+
+
+###
+
+FROM base AS frontend_sqlite
+COPY frontend/ frontend/
+COPY public/ public/
+COPY index.html tsconfig.json vite.config.ts ./
+EXPOSE $FRONTEND_PORT
+CMD ["dev:frontend"]
+
+FROM base AS frontend_postgres
+COPY frontend/ frontend/
+COPY public/ public/
+COPY index.html tsconfig.json vite.config.ts ./
+EXPOSE $FRONTEND_PORT
+CMD ["dev:frontend"]
+
+FROM base AS backend_sqlite
+COPY backend/ backend/
+COPY tsconfig*.json ./
+EXPOSE $BACKEND_PORT
+CMD ["dev:backend:koa:sqlite"]
+
+FROM base AS backend_postgres
+COPY backend/ backend/
+COPY tsconfig*.json ./
+EXPOSE $BACKEND_PORT
+CMD ["dev:backend:koa:postgres"]

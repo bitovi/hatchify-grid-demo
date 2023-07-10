@@ -1,12 +1,12 @@
 version: '3.9'
 
 services:
-  backend:
-    env_file: .env
-    container_name: backend
+  backend_sqlite:
+   # env_file: .env
+    container_name: backend_sqlite
     build:
       context: .
-      target: backend
+      target: backend_sqlite
     restart: unless-stopped
     volumes:
       - .:/app
@@ -14,13 +14,30 @@ services:
     ports:
       - 3000:3000
     networks:
-      - hatch
+      - hatch_sqlite
 
-  frontend:
-    container_name: frontend
+  backend_postgres:
+   # env_file: .env
+    container_name: backend_postgres
     build:
       context: .
-      target: frontend
+      target: backend_postgres
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3001:3000
+    networks:
+      - hatch_postgres
+    depends_on:
+      - postgres_db
+
+  frontend_sqlite:
+    container_name: frontend_sqlite
+    build:
+      context: .
+      target: frontend_sqlite
     restart: unless-stopped
     volumes:
       - .:/app
@@ -28,8 +45,45 @@ services:
     ports:
       - 5173:5173
     networks:
-      - hatch
+      - hatch_sqlite
+    depends_on:
+      - backend_sqlite
+    environment:
+      - API_URL="http://hatchify-grid-demo.bitovi-sandbox.com:3000/api"
+
+  frontend_postgres:
+    container_name: frontend_postgres
+    build:
+      context: .
+      target: frontend_postgres
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 5174:5173
+    networks:
+      - hatch_postgres
+    depends_on:
+      - backend_postgres
+    environment:
+      - API_URL="http://hatchify-grid-demo.bitovi-sandbox.com:3001/api"
+
+  postgres_db:
+    image: postgres:15.3-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    networks:
+      - hatch_postgres
 
 networks:
-  hatch:
+  hatch_sqlite:
+    driver: bridge
+  hatch_postgres:
     driver: bridge

@@ -8,7 +8,7 @@ import { Document } from "../schemas/Document";
 
 export const hatchedReact = hatchifyReact(
   { Document },
-  createJsonapiClient("http://hatchify-grid-demo-postgres.bitovi-sandbox.com:3000/api", {
+  createJsonapiClient("http://hatchify-grid-demo.bitovi-sandbox.com:3000/api", {
     Document: { endpoint: "documents" },
   })
 );
