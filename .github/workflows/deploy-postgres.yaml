@@ -16,20 +16,6 @@ jobs:
       name: ${{ github.ref_name }}
       url: ${{ steps.deploy.outputs.vm_url }}
     steps:
-      #- id: Destroy
-      #  name: Destroy
-      #  uses: bitovi/github-actions-deploy-docker-to-ec2@gha-testing
-      #  with:
-      #    stack_destroy: true
-      #    tf_state_bucket_destroy: true
-      #
-      #    domain_name: bitovi-sandbox.com
-      #    sub_domain: hatchify-grid-demo-postgres
-      #
-      #    aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
-      #    aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
-      #    aws_default_region: us-east-1
-
       - id: deploy-postgres
         name: Deploy with postgres
         uses: bitovi/github-actions-deploy-docker-to-ec2@gha-testing
@@ -41,17 +27,15 @@ jobs:
           # Provide a secret called `DOT_ENV` to append environment variables to the .env file
           # dot_env: ${{ secrets.DOT_ENV }}
           domain_name: bitovi-sandbox.com
-          sub_domain: hatchify-grid-demo-postgres
+          sub_domain: hatchify-grid-demo
           no_cert: true
-          app_port: "5173,3000"
-          lb_port: "5173,3000"
+          app_port: "5173,5174,3000,3001"
+          lb_port: "5173,5174,3000,3001"
           lb_healthcheck: "HTTP:5173"
 
-          aws_ec2_instance_root_vol_size: 20
+          ec2_volume_size: 20
           create_keypair_sm_entry: true
 
           docker_full_cleanup: true
           app_directory_cleanup: true
-
-          aws_enable_postgres: true
-          aws_postgres_database_name: postgres
+ 
