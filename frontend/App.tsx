@@ -4,11 +4,11 @@ import {
   MuiProvider,
   createJsonapiClient,
 } from "@hatchifyjs/react";
-import { Document } from "../schemas/Document";
+const backend_url = import.meta.env.VITE_BACKEND_URL;
 
 export const hatchedReact = hatchifyReact(
   { Document },
-  createJsonapiClient("http://hatchify-grid-demo.bitovi-sandbox.com:3000/api", {
+  createJsonapiClient(backend_url, {
     Document: { endpoint: "documents" },
   })
 );
