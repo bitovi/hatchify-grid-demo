@@ -40,7 +40,7 @@ function getDatabaseConfiguration(database: "postgres" | "sqlite"): Options {
   if (database === "postgres")
     return {
           dialect: "postgres",
-          host: "evergreen.dl.lan",
+          host: "hatchify-grid-demo.bitovi-sandbox.com",
           port: 5432,
           username: "postgres",
           password: "postgres"
