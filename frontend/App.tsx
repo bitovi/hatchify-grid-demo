@@ -4,6 +4,7 @@ import {
   MuiProvider,
   createJsonapiClient,
 } from "@hatchifyjs/react";
+import { Document } from "../schemas/Document";
 const backend_url = import.meta.env.VITE_BACKEND_URL;
 
 export const hatchedReact = hatchifyReact(
