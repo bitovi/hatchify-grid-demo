@@ -6,28 +6,37 @@ services:
     container_name: backend_sqlite
     build:
       context: .
-      target: backend_sqlite
+      target: backend
     restart: unless-stopped
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - 3000:3000
+    environment:
+      #- FRAMEWORK=koa
+      - DB_ENGINE=sqlite
     networks:
       - hatch_sqlite
 
   backend_postgres:
-   # env_file: .env
+    #env_file: .postgres.env
     container_name: backend_postgres
     build:
       context: .
-      target: backend_postgres
+      target: backend
     restart: unless-stopped
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - 3001:3000
+    environment:
+      #- FRAMEWORK=koa
+      - DB_ENGINE=postgres
+      - PGHOST=postgres_db
+      - PG_USER=postgres
+      - PG_PASSWORD=postgres
     networks:
       - hatch_postgres
     depends_on:
@@ -37,7 +46,7 @@ services:
     container_name: frontend_sqlite
     build:
       context: .
-      target: frontend_sqlite
+      target: frontend
     restart: unless-stopped
     volumes:
       - .:/app
@@ -49,13 +58,13 @@ services:
     depends_on:
       - backend_sqlite
     environment:
-      - VITE_BACKEND_URL="http://hatchify-grid-demo.bitovi-sandbox.com:3000/api"
+      - VITE_BACKEND_URL="http://backend_sqlite:3000/api"
 
   frontend_postgres:
     container_name: frontend_postgres
     build:
       context: .
-      target: frontend_postgres
+      target: frontend
     restart: unless-stopped
     volumes:
       - .:/app
@@ -67,7 +76,7 @@ services:
     depends_on:
       - backend_postgres
     environment:
-      - VITE_BACKEND_URL="http://hatchify-grid-demo.bitovi-sandbox.com:3001/api"
+      - VITE_BACKEND_URL="http://backend_postgres:3001/api"
 
   postgres_db:
     image: postgres:15.3-alpine
@@ -77,8 +86,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - 5432:5432
-    volumes:
-      - ./db:/var/lib/postgresql/data
+    #volumes:
+    #  - ./db:/var/lib/postgresql/data
     networks:
       - hatch_postgres
 
