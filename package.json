@@ -18,8 +18,8 @@
     "start:backend:express:postgres": "node dist/backend/backend/index.js -f express -d postgres"
   },
   "dependencies": {
-    "@hatchifyjs/express": "^0.0.5",
-    "@hatchifyjs/koa": "^0.0.12",
+    "@hatchifyjs/express": "^0.0.6",
+    "@hatchifyjs/koa": "^0.0.13",
     "@hatchifyjs/react": "^0.0.1-10",
     "@koa/cors": "^4.0.0",
     "commander": "^11.0.0",
