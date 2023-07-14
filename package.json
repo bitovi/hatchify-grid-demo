@@ -15,7 +15,9 @@
     "start:backend:koa:sqlite": "node dist/backend/backend/index.js -f koa -d sqlite",
     "start:backend:express:sqlite": "node dist/backend/backend/index.js -f express -d sqlite",
     "start:backend:koa:postgres": "node dist/backend/backend/index.js -f koa -d postgres",
-    "start:backend:express:postgres": "node dist/backend/backend/index.js -f express -d postgres"
+    "start:backend:express:postgres": "node dist/backend/backend/index.js -f express -d postgres",
+    "start:backend:koa:rds": "node dist/backend/backend/index.js -f koa -d rds",
+    "start:backend:express:rds": "node dist/backend/backend/index.js -f express -d rds"
   },
   "dependencies": {
     "@hatchifyjs/express": "^0.0.6",

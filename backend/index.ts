@@ -1,4 +1,4 @@
-//import fs from "fs";
+import fs from "fs";
 import { Options } from "sequelize";
 import dotenv from "dotenv";
 import { Command } from "commander";
@@ -14,7 +14,7 @@ dotenv.config({ path: "../.postgres.env" });
 
 const options = new Command()
   .requiredOption("-f, --framework <express|koa>", "Node framework")
-  .requiredOption("-d, --database <sqlite|postgres>", "Database type")
+  .requiredOption("-d, --database <sqlite|rds|postgres>", "Database type")
   .parse()
   .opts();
 
@@ -36,17 +36,20 @@ function getHatchFunction(framework: "express" | "koa") {
   return hatchifyKoa;
 }
 
-function getDatabaseConfiguration(database: "postgres" | "sqlite"): Options {
+function getDatabaseConfiguration(
+  database: "postgres" | "rds" | "sqlite"
+): Options {
   if (database === "postgres")
     return {
-          dialect: "postgres",
-          host: process.env.PGHOST || "",
-          port: Number(process.env.PGPORT) || 5432,
-          database: process.env.PGDATABASE || "",
-          username: process.env.PG_USER || "",
-          password: process.env.PG_PASSWORD || "",
+      dialect: "postgres",
+      host: process.env.PGHOST || "",
+      port: Number(process.env.PGPORT) || 5432,
+      database: process.env.PGDATABASE || "",
+      username: process.env.PG_USER || "",
+      password: process.env.PG_PASSWORD || "",
     };
- /*   Only for Aurora RDS  
+
+  if (database === "rds") {
     return {
       dialect: "postgres",
       dialectOptions: {
@@ -62,7 +65,8 @@ function getDatabaseConfiguration(database: "postgres" | "sqlite"): Options {
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
     };
-*/
+  }
+
   return {
     dialect: "sqlite",
     storage: "example.sqlite",
