@@ -6,7 +6,7 @@ import {
 } from "@hatchifyjs/react";
 import { Document } from "../schemas/Document";
 const backend_url = import.meta.env.VITE_BACKEND_URL;
-import { Icon } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 export const hatchedReact = hatchifyReact(
   { Document },
@@ -24,19 +24,19 @@ const App: React.FC = () => {
     <MuiProvider>
       <DocumentList>
         <DocumentEmptyList>
-          <div onClick={() => console.log("record")}>
-            {"No records to display"}
-          </div>
+          <div>{"No records to display"}</div>
         </DocumentEmptyList>
         <DocumentExtraColumn
           label="Action"
           render={({ record }) => {
             return (
-              <div onClick={() => console.log(record)}>
-                <Icon className="material-icons" sx={{ color: "grey" }}>
-                  visibility
-                </Icon>
-              </div>
+              <IconButton
+                className="material-icons"
+                sx={{ color: "grey" }}
+                onClick={() => console.log(record)}
+              >
+                visibility
+              </IconButton>
             );
           }}
         />
