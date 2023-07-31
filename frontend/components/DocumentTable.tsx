@@ -1,30 +1,16 @@
-import { Button, Icon, IconButton, TextField } from "@mui/material";
+import { Button, Icon, IconButton } from "@mui/material";
 
-export function FiltersRow({ selected }: { selected: string[] }) {
+export function ActionsRow({ selected }: { selected: string[] }) {
   return (
     <div
       style={{
         paddingLeft: 15,
         paddingRight: 15,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         display: "flex",
       }}
     >
-      <div style={{ width: 400 }}>
-        <TextField
-          placeholder="Search for files"
-          variant="outlined"
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <Icon className="material-icons" sx={{ color: "grey" }}>
-                search
-              </Icon>
-            ),
-          }}
-        />
-      </div>
       <div>
         <Button
           variant="contained"
@@ -37,23 +23,6 @@ export function FiltersRow({ selected }: { selected: string[] }) {
           onClick={() => alert(`selected ids: ${selected.join(",")}`)}
         >
           Add File to Claims
-        </Button>
-        <Button
-          variant="outlined"
-          color="inherit"
-          style={{ color: "grey", marginLeft: 10 }}
-          startIcon={
-            <Icon className="material-icons" sx={{ color: "grey" }}>
-              filter_alt
-            </Icon>
-          }
-          endIcon={
-            <Icon className="material-icons" sx={{ color: "grey" }}>
-              arrow_drop_down
-            </Icon>
-          }
-        >
-          Filter
         </Button>
       </div>
     </div>

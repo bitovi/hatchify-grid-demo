@@ -22,7 +22,7 @@
   "dependencies": {
     "@hatchifyjs/express": "^0.0.10",
     "@hatchifyjs/koa": "^0.0.17",
-    "@hatchifyjs/react": "^0.0.1-15",
+    "@hatchifyjs/react": "^0.0.1-16",
     "@koa/cors": "^4.0.0",
     "commander": "^11.0.0",
     "cors": "^2.8.5",
