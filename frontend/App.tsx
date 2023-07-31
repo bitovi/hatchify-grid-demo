@@ -11,7 +11,7 @@ import {
   DocumentStatus,
   DocumentActions,
   DocumentDate,
-  FiltersRow,
+  ActionsRow,
 } from "./components/DocumentTable";
 
 const backend_url =
@@ -26,25 +26,23 @@ export const hatchedReact = hatchifyReact(
   })
 );
 
-const DocumentList = hatchedReact.components.Document.List;
-const DocumentExtraColumn = hatchedReact.components.Document.ExtraColumn;
+const DocumentList = hatchedReact.components.Document.Collection;
 const DocumentColumn = hatchedReact.components.Document.Column;
-const DocumentEmptyList = hatchedReact.components.Document.EmptyList;
+const DocumentEmptyList = hatchedReact.components.Document.Empty;
 
 const App: React.FC = () => {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (
     <MuiProvider theme={theme}>
-      <FiltersRow selected={selected} />
+      <ActionsRow selected={selected} />
       <DocumentList
-        selectable
-        onSelectionChange={(selected) => setSelected(selected)}
+        defaultSelected={selected}
+        onSelectedChange={(selected) => setSelected(selected)}
       >
-        <DocumentColumn attribute="name" />
-        <DocumentColumn attribute="date" renderValue={DocumentDate} />
-        <DocumentColumn attribute="status" ValueComponent={DocumentStatus} />
-        <DocumentExtraColumn label="Action" ValueComponent={DocumentActions} />
+        <DocumentColumn type="replace" field="date" renderValue={DocumentDate} />
+        <DocumentColumn type="replace" field="status" ValueComponent={DocumentStatus} />
+        <DocumentColumn type="append" label="Action" ValueComponent={DocumentActions} />
         <DocumentEmptyList>No records to display</DocumentEmptyList>
       </DocumentList>
     </MuiProvider>
