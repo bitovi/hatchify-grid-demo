@@ -67,7 +67,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           padding: "8px",
-          "&:nth-child(1)": {
+          "&:nth-of-type(1)": {
             width: 40,
           },
           "&:last-child": {

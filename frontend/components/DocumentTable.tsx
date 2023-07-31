@@ -35,7 +35,7 @@ export function DocumentDate({ value, record, attributeSchema }: any) {
   const mm = ("0" + (date.getMonth() + 1)).slice(-2);
   const dd = ("0" + date.getDate()).slice(-2);
   const hh = (date.getHours() + 24) % 12 || 12;
-  const min = date.getMinutes();
+  const min = `${(date.getMinutes() > 9 ? '' : 0)}${date.getMinutes()}`;
   const ampm = date.getHours() >= 12 ? "pm" : "am";
   return (
     <span
@@ -46,17 +46,19 @@ export function DocumentDate({ value, record, attributeSchema }: any) {
 
 export function DocumentStatus({ value, record, attributeSchema }: any) {
   return (
-    <div
-      style={{
-        backgroundColor: "#EFF1F1",
-        padding: "5px 10px",
-        borderRadius: 5,
-        display: "inline-flex",
-        alignItems: "center",
-      }}
-    >
-      {value}
-    </div>
+    value && (
+      <div
+        style={{
+          backgroundColor: "#EFF1F1",
+          padding: "5px 10px",
+          borderRadius: 5,
+          display: "inline-flex",
+          alignItems: "center",
+        }}
+      >
+        {value}
+      </div>
+    )
   );
 }
 
