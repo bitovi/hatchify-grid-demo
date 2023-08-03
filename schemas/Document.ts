@@ -2,7 +2,7 @@ export const Document = {
   name: "Document",
   attributes: {
     name: "STRING",
-    date: "DATE",
+    date: {type: "DATE", allowNull: false },
     status: {
       type: "ENUM",
       values: ["Pending", "Failed", "Completed"]
