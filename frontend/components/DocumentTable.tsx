@@ -35,7 +35,7 @@ export function DocumentDate({ value, record, attributeSchema }: any) {
   const mm = ("0" + (date.getMonth() + 1)).slice(-2);
   const dd = ("0" + date.getDate()).slice(-2);
   const hh = (date.getHours() + 24) % 12 || 12;
-  const min = `${(date.getMinutes() > 9 ? '' : 0)}${date.getMinutes()}`;
+  const min = `${date.getMinutes() > 9 ? "" : 0}${date.getMinutes()}`;
   const ampm = date.getHours() >= 12 ? "pm" : "am";
   return (
     <span
@@ -68,14 +68,14 @@ export function DocumentActions({ record }: any) {
       <IconButton
         className="material-icons"
         sx={{ color: "grey" }}
-        onClick={() => console.log(record)}
+        onClick={() => alert(`Download clicked on ${record.name}`)}
       >
         download
       </IconButton>
       <IconButton
         className="material-icons"
         sx={{ color: "grey" }}
-        onClick={() => console.log(record)}
+        onClick={() => alert(`View clicked on ${record.name}`)}
       >
         visibility
       </IconButton>
