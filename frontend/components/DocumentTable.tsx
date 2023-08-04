@@ -1,6 +1,16 @@
 import { Button, Icon, IconButton } from "@mui/material";
 
-export function ActionsRow({ selected }: { selected: string[] }) {
+export const ActionsRow: React.FC<{
+  selected: { all: boolean; ids: string[] };
+}> = ({ selected }) => {
+  console.log("selected", selected);
+  function onClick() {
+    if (!selected.all && !selected.ids.length) alert("action on no items");
+    else if (selected.all)
+      alert(`action on ALL ITEMS or items ${selected.ids.join(",")}`);
+    else alert(`action on items ${selected.ids.join(",")}`);
+  }
+
   return (
     <div
       style={{
@@ -20,14 +30,14 @@ export function ActionsRow({ selected }: { selected: string[] }) {
               add
             </Icon>
           }
-          onClick={() => alert(`selected ids: ${selected.join(",")}`)}
+          onClick={onClick}
         >
           Add File to Claims
         </Button>
       </div>
     </div>
   );
-}
+};
 
 export function DocumentDate({ value, record, attributeSchema }: any) {
   const date = new Date(value);

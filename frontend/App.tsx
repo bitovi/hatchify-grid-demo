@@ -19,7 +19,6 @@ const backend_url =
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  // @ts-expect-error
   { Document },
   createJsonapiClient(backend_url, {
     Document: { endpoint: "documents" },
@@ -31,7 +30,10 @@ const DocumentColumn = hatchedReact.components.Document.Column;
 const DocumentEmptyList = hatchedReact.components.Document.Empty;
 
 const App: React.FC = () => {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<{ all: boolean; ids: string[] }>({
+    all: false,
+    ids: [],
+  });
 
   return (
     <MuiProvider theme={theme}>
@@ -40,9 +42,21 @@ const App: React.FC = () => {
         defaultSelected={selected}
         onSelectedChange={(selected) => setSelected(selected)}
       >
-        <DocumentColumn type="replace" field="date" renderValue={DocumentDate} />
-        <DocumentColumn type="replace" field="status" ValueComponent={DocumentStatus} />
-        <DocumentColumn type="append" label="Action" ValueComponent={DocumentActions} />
+        <DocumentColumn
+          type="replace"
+          field="date"
+          renderValue={DocumentDate}
+        />
+        <DocumentColumn
+          type="replace"
+          field="status"
+          ValueComponent={DocumentStatus}
+        />
+        <DocumentColumn
+          type="append"
+          label="Action"
+          ValueComponent={DocumentActions}
+        />
         <DocumentEmptyList>No records to display</DocumentEmptyList>
       </DocumentList>
     </MuiProvider>
