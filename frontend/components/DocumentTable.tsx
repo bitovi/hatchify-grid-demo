@@ -48,9 +48,15 @@ export function DocumentDate({ value, record, attributeSchema }: any) {
   const min = `${date.getMinutes() > 9 ? "" : 0}${date.getMinutes()}`;
   const ampm = date.getHours() >= 12 ? "pm" : "am";
   return (
-    <span
-      style={{ color: "#818D96" }}
-    >{`${yyyy}-${mm}-${dd} ${hh}:${min} ${ampm}`}</span>
+    <>
+      {value === null ? (
+        <span></span>
+      ) : (
+        <span
+          style={{ color: "#818D96" }}
+        >{`${yyyy}-${mm}-${dd} ${hh}:${min} ${ampm}`}</span>
+      )}
+    </>
   );
 }
 
