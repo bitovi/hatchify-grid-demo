@@ -10,6 +10,7 @@ export const Event = {
       primaryKey: true,
       defaultValue: () => uuid.v4(),
     },
+    dataSourceId: "UUID",
     source: "TEXT",
     type: "TEXT",
     status: "TEXT",
@@ -29,7 +30,7 @@ export const Event = {
   hasMany: [
     {
       target: "Item",
-      options: { as: "items", foreignKey: "itemId", constraints: false },
+      options: { as: "items", foreignKey: "eventId", constraints: false },
     },
   ],
 };

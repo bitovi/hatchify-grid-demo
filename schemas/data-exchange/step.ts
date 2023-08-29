@@ -10,6 +10,7 @@ export const Step = {
       primaryKey: true,
       defaultValue: () => uuid.v4(),
     },
+    itemId: "UUID",
     stepName: "TEXT",
     startDateTime: "DATE",
     endDateTime: "DATE",
