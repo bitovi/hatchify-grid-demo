@@ -9,6 +9,11 @@ import cors from "cors";
 import { hatchifyExpress } from "@hatchifyjs/express";
 import { hatchifyKoa } from "@hatchifyjs/koa";
 import { Document } from "../schemas/Document";
+import { Event } from "../schemas/data-exchange/event";
+import { Item } from "../schemas/data-exchange/item";
+import { Step } from "../schemas/data-exchange/step";
+import { DataSource } from "../schemas/tenancy/data-source";
+import { Org } from "../schemas/tenancy/org";
 
 dotenv.config({ path: "../.postgres.env" });
 
@@ -18,10 +23,13 @@ const options = new Command()
   .parse()
   .opts();
 
-const hatchedNode = getHatchFunction(options.framework)([Document], {
-  prefix: "/api",
-  database: getDatabaseConfiguration(options.database),
-});
+const hatchedNode = getHatchFunction(options.framework)(
+  [Document, Event, Item, Step, DataSource, Org],
+  {
+    prefix: "/api",
+    database: getDatabaseConfiguration(options.database),
+  }
+);
 
 (async () => {
   await hatchedNode.createDatabase();
