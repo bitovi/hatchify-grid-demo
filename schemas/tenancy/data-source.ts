@@ -10,6 +10,7 @@ export const DataSource = {
       primaryKey: true,
       defaultValue: () => uuid.v4(),
     },
+    orgId: "UUID",
     dataSourceMnemonic: "TEXT",
   },
   belongsTo: [
@@ -21,7 +22,7 @@ export const DataSource = {
   hasMany: [
     {
       target: "Event",
-      options: { as: "events", foreignKey: "eventId", constraints: false },
+      options: { as: "events", foreignKey: "dataSourceId", constraints: false },
     },
   ],
 };

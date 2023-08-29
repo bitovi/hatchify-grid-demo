@@ -10,6 +10,7 @@ export const Item = {
       primaryKey: true,
       defaultValue: () => uuid.v4(),
     },
+    eventId: "UUID",
     type: "TEXT",
     inputLocation: "TEXT",
     inputName: "TEXT",
@@ -25,7 +26,7 @@ export const Item = {
   hasMany: [
     {
       target: "Step",
-      options: { as: "steps", foreignKey: "stepId", constraints: false },
+      options: { as: "steps", foreignKey: "itemId", constraints: false },
     },
   ],
 };
