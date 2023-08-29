@@ -34,7 +34,7 @@ jobs:
           lb_healthcheck: "HTTP:5173"
 
           ec2_volume_size: 20
-          ec2_instance_type: t2.medium
+          ec2_instance_type: t2.large
           create_keypair_sm_entry: true
 
           docker_full_cleanup: true
