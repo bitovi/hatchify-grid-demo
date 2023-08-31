@@ -6,7 +6,7 @@ import {
   MuiProvider,
   createJsonapiClient,
 } from "@hatchifyjs/react";
-import { Document } from "../schemas/Document";
+import { DocumentV1 as Document } from "../schemas/Document";
 import {
   DocumentStatus,
   DocumentActions,
