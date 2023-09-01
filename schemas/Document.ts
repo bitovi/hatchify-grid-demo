@@ -3,7 +3,6 @@ import {
   datetime,
   enumerate,
   PartialSchema,
-  // @ts-ignore
 } from "@hatchifyjs/hatchify-core";
 
 export const DocumentV1 = {
