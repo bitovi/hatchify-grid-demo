@@ -6,20 +6,21 @@ import {
   MuiProvider,
   createJsonapiClient,
 } from "@hatchifyjs/react";
-import { DocumentV1 as Document } from "../schemas/Document";
+import { Document } from "../schemas/Document";
 import {
   DocumentStatus,
   DocumentActions,
   DocumentDate,
   ActionsRow,
 } from "./components/DocumentTable";
+import { v2ToV1 } from "../schemas/v2ToV1";
 
 const backend_url =
   // @ts-expect-error
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  { Document },
+  { Document: v2ToV1(Document) },
   createJsonapiClient(backend_url, {
     Document: { endpoint: "documents" },
   })
