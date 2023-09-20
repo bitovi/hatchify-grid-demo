@@ -1,24 +1,25 @@
-import { PartialSchema, assembler } from "@hatchifyjs/hatchify-core";
+import {
+  FinalAttributeRecord,
+  PartialSchema,
+  assembler,
+} from "@hatchifyjs/hatchify-core";
 
 export function v2ToV1(schemas: Record<string, PartialSchema>) {
   return Object.entries(assembler(schemas)).reduce(
-    (schemaAcc, [schemaName, { relationships, ...schema }]) => ({
+    (schemaAcc, [schemaName, { id, relationships, ...schema }]) => ({
       ...schemaAcc,
       [schemaName]: {
         ...schema,
-        attributes: Object.entries(schema.attributes).reduce(
-          (acc, [key, { orm }]) => ({
-            ...acc,
-            [key]: {
-              ...orm.sequelize,
-              values:
-                orm.sequelize.type === "ENUM" &&
-                "typeArgs" in orm.sequelize &&
-                orm.sequelize.typeArgs,
-            },
-          }),
-          {}
-        ),
+        attributes: {
+          id: transformAttribute(id),
+          ...Object.entries(schema.attributes).reduce(
+            (acc, [attributeName, attribute]) => ({
+              ...acc,
+              [attributeName]: transformAttribute(attribute),
+            }),
+            {}
+          ),
+        },
         ...Object.entries(relationships ?? {}).reduce(
           (relationshipAcc, [relationshipName, relationship]) => {
             const type =
@@ -54,4 +55,17 @@ export function v2ToV1(schemas: Record<string, PartialSchema>) {
     }),
     {}
   );
+}
+
+function transformAttribute({
+  orm,
+}: FinalAttributeRecord[keyof FinalAttributeRecord]) {
+  const { typeArgs, ...sequelize } = orm.sequelize;
+  return {
+    ...sequelize,
+    ...(typeArgs?.length ? { typeArgs } : {}),
+    ...(sequelize.type === "ENUM" && "typeArgs" in sequelize
+      ? { values: typeArgs }
+      : {}),
+  };
 }
