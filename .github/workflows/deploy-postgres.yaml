@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [feat/v2-frontend]
 
 permissions:
   contents: read
@@ -27,7 +27,7 @@ jobs:
           # Provide a secret called `DOT_ENV` to append environment variables to the .env file
           # dot_env: ${{ secrets.DOT_ENV }}
           domain_name: bitovi-sandbox.com
-          sub_domain: hatchify-grid-demo
+          sub_domain: hatchify-grid-demo-v2
           no_cert: true
           app_port: 5173,5174,3000,3001
           lb_port: 5173,5174,3000,3001
@@ -38,8 +38,7 @@ jobs:
           create_keypair_sm_entry: true
 
           docker_full_cleanup: true
-          app_directory_cleanup: true 
-          
+          app_directory_cleanup: true
+
           #stack_destroy: true
           tf_state_bucket_destroy: true
-          
