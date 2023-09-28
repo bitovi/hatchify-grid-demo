@@ -1,19 +1,19 @@
 import {
   string,
   datetime,
-  enumerate,
+  // enumerate,
   PartialSchema,
   integer,
-  boolean,
+  // boolean,
 } from "@hatchifyjs/hatchify-core";
 
-export const Document: PartialSchema = {
+export const Document = {
   name: "Document",
   attributes: {
     name: string(),
     dueDate: datetime(),
     importance: integer(),
-    status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
-    complete: boolean(),
+    // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
+    // complete: boolean(),
   },
-};
+} satisfies PartialSchema;

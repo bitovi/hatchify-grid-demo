@@ -13,14 +13,13 @@ import {
   DocumentDate,
   ActionsRow,
 } from "./components/DocumentTable";
-import { v2ToV1 } from "../schemas/v2ToV1";
 
 const backend_url =
   // @ts-expect-error
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  v2ToV1({ Document }),
+  { Document },
   createJsonapiClient(backend_url, {
     Document: { endpoint: "documents" },
   })
@@ -29,6 +28,10 @@ export const hatchedReact = hatchifyReact(
 const DocumentList = hatchedReact.components.Document.Collection;
 const DocumentColumn = hatchedReact.components.Document.Column;
 const DocumentEmptyList = hatchedReact.components.Document.Empty;
+
+// hatchedReact.model.Document.findAll({}).then(([documents]) => {
+//   documents[0].
+// })
 
 const App: React.FC = () => {
   const [selected, setSelected] = useState<{ all: boolean; ids: string[] }>({
@@ -45,14 +48,14 @@ const App: React.FC = () => {
       >
         <DocumentColumn
           type="replace"
-          field="date"
+          field="dueDate"
           renderValue={DocumentDate}
         />
-        <DocumentColumn
+        {/* <DocumentColumn
           type="replace"
           field="status"
           ValueComponent={DocumentStatus}
-        />
+        /> */}
         <DocumentColumn
           type="append"
           label="Action"
