@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@hatchifyjs/express": "^0.1.4",
-    "@hatchifyjs/hatchify-core": "^0.1.2",
-    "@hatchifyjs/koa": "^0.1.11",
+    "@hatchifyjs/hatchify-core": "^0.1.5",
+    "@hatchifyjs/koa": "^0.1.14",
     "@hatchifyjs/react": "^0.0.1-43",
     "@koa/cors": "^4.0.0",
     "commander": "^11.0.0",
