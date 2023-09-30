@@ -2,7 +2,7 @@ import {
   FinalAttributeRecord,
   PartialSchema,
   assembler,
-} from "@hatchifyjs/hatchify-core";
+} from "@hatchifyjs/core";
 
 export function v2ToV1(schemas: Record<string, PartialSchema>) {
   return Object.entries(assembler(schemas)).reduce(
