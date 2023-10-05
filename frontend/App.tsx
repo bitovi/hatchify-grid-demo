@@ -33,6 +33,12 @@ const DocumentEmptyList = hatchedReact.components.Document.Empty;
 //   documents[0].
 // })
 
+// hatchedReact.model.Document.createOne({
+//   name: "",
+//   dueDate: new Date(),
+//   importance: 0,
+// });
+
 const App: React.FC = () => {
   const [selected, setSelected] = useState<{ all: boolean; ids: string[] }>({
     all: false,

@@ -5,7 +5,7 @@ import {
   PartialSchema,
   integer,
   // boolean,
-} from "@hatchifyjs/hatchify-core";
+} from "@hatchifyjs/core";
 
 export const Document = {
   name: "Document",
