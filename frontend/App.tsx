@@ -1,6 +1,7 @@
 // hatchify-app/frontend/App.tsx
 import { useState } from "react";
 import { createTheme } from "@mui/material";
+import { v2ToV1 } from "@hatchifyjs/core";
 import {
   hatchifyReact,
   MuiProvider,
@@ -13,7 +14,6 @@ import {
   DocumentDate,
   ActionsRow,
 } from "./components/DocumentTable";
-import { v2ToV1 } from "../schemas/v2ToV1";
 
 const backend_url =
   // @ts-expect-error

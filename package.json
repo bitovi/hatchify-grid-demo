@@ -20,7 +20,7 @@
     "start:backend:express:rds": "node dist/backend/backend/index.js -f express -d rds"
   },
   "dependencies": {
-    "@hatchifyjs/core": "^0.1.7",
+    "@hatchifyjs/core": "^0.1.9",
     "@hatchifyjs/express": "^0.1.5",
     "@hatchifyjs/koa": "^0.1.15",
     "@hatchifyjs/react": "^0.0.1-45",
