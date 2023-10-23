@@ -7,7 +7,6 @@ import {
   createJsonapiClient,
 } from "@hatchifyjs/react";
 import { Document } from "../schemas/Document";
-import { v2ToV1 } from "@hatchifyjs/core";
 import {
   DocumentStatus,
   DocumentActions,
@@ -20,7 +19,9 @@ const backend_url =
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  createJsonapiClient(backend_url, Document)
+  createJsonapiClient(backend_url, {
+    Document,
+  })
 );
 
 const DocumentList = hatchedReact.components.Document.Collection;
