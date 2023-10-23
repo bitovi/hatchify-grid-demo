@@ -1,5 +1,6 @@
 import {
   string,
+  dateonly,
   datetime,
   // enumerate,
   PartialSchema,
@@ -13,6 +14,7 @@ export const Document = {
     name: string(),
     dueDate: datetime(),
     importance: integer(),
+    completedDate: dateonly()
     // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
     // complete: boolean(),
   },
