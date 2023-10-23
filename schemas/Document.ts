@@ -14,7 +14,7 @@ export const Document = {
     name: string(),
     dueDate: datetime(),
     importance: integer(),
-    completedDate: dateonly()
+    lastUpdatedDate: dateonly()
     // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
     // complete: boolean(),
   },
