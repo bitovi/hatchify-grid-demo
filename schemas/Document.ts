@@ -5,6 +5,7 @@ import {
   // enumerate,
   PartialSchema,
   integer,
+  text,
   // boolean,
 } from "@hatchifyjs/core";
 
@@ -14,7 +15,8 @@ export const Document = {
     name: string(),
     dueDate: datetime(),
     importance: integer(),
-    lastUpdatedDate: dateonly()
+    lastUpdatedDate: dateonly(),
+    notes: text()
     // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
     // complete: boolean(),
   },
