@@ -6,9 +6,9 @@ import {
   MuiProvider,
   createJsonapiClient,
 } from "@hatchifyjs/react";
-import { Document } from "../schemas/Document";
+import schemas from "../schemas/schemas";
 import {
-  DocumentStatus,
+  // DocumentStatus,
   DocumentActions,
   DocumentDate,
   ActionsRow,
@@ -19,9 +19,7 @@ const backend_url =
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  createJsonapiClient(backend_url, {
-    Document,
-  })
+  createJsonapiClient(backend_url, schemas)
 );
 
 const DocumentList = hatchedReact.components.Document.Collection;
