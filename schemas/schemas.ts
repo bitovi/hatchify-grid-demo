@@ -7,6 +7,7 @@ import {
   integer,
   text,
   boolean,
+  uuid,
   belongsTo,
   hasMany,
 } from "@hatchifyjs/core";
@@ -21,6 +22,7 @@ export const schemas = {
       lastUpdatedDate: dateonly(),
       notes: text(),
       complete: boolean(),
+      uuid: uuid(),
       // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
     },
     relationships: {
