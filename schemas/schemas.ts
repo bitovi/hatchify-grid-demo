@@ -2,7 +2,7 @@ import {
   string,
   dateonly,
   datetime,
-  // enumerate,
+  enumerate,
   PartialSchema,
   integer,
   text,
@@ -23,7 +23,7 @@ export const schemas = {
       notes: text(),
       complete: boolean(),
       uuid: uuid(),
-      // status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
+      status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
     },
     relationships: {
       uploadedBy: belongsTo("User"),
