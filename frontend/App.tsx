@@ -8,7 +8,7 @@ import {
 } from "@hatchifyjs/react";
 import schemas from "../schemas/schemas";
 import {
-  // DocumentStatus,
+  DocumentStatus,
   DocumentActions,
   DocumentDate,
   ActionsRow,
@@ -27,13 +27,13 @@ const DocumentColumn = hatchedReact.components.Document.Column;
 const DocumentEmptyList = hatchedReact.components.Document.Empty;
 
 // hatchedReact.model.Document.findAll({}).then(([documents]) => {
-//   documents[0].
+//   documents[0].status
 // })
 
 // hatchedReact.model.Document.createOne({
-//   name: "",
-//   dueDate: new Date(),
-//   importance: 0,
+//   attributes: {
+//     status: "Pending"
+//   }
 // });
 
 const App: React.FC = () => {
@@ -54,11 +54,11 @@ const App: React.FC = () => {
           field="dueDate"
           renderValue={DocumentDate}
         />
-        {/* <DocumentColumn
+        <DocumentColumn
           type="replace"
           field="status"
           ValueComponent={DocumentStatus}
-        /> */}
+        />
         <DocumentColumn
           type="append"
           label="Action"
