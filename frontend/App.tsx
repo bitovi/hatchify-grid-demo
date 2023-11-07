@@ -1,10 +1,10 @@
 // hatchify-app/frontend/App.tsx
 import { useState } from "react";
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import {
   hatchifyReact,
-  MuiProvider,
   createJsonapiClient,
+  HatchifyProvider,
 } from "@hatchifyjs/react";
 import schemas from "../schemas/schemas";
 import {
@@ -43,30 +43,32 @@ const App: React.FC = () => {
   });
 
   return (
-    <MuiProvider theme={theme}>
-      <ActionsRow selected={selected} />
-      <DocumentList
-        defaultSelected={selected}
-        onSelectedChange={(selected) => setSelected(selected)}
-      >
-        <DocumentColumn
-          type="replace"
-          field="dueDate"
-          renderValue={DocumentDate}
-        />
-        <DocumentColumn
-          type="replace"
-          field="status"
-          ValueComponent={DocumentStatus}
-        />
-        <DocumentColumn
-          type="append"
-          label="Action"
-          ValueComponent={DocumentActions}
-        />
-        <DocumentEmptyList>No records to display</DocumentEmptyList>
-      </DocumentList>
-    </MuiProvider>
+    <ThemeProvider theme={theme}>
+      <HatchifyProvider>
+        <ActionsRow selected={selected} />
+        <DocumentList
+          defaultSelected={selected}
+          onSelectedChange={(selected) => setSelected(selected)}
+        >
+          <DocumentColumn
+            type="replace"
+            field="dueDate"
+            renderValue={DocumentDate}
+          />
+          <DocumentColumn
+            type="replace"
+            field="status"
+            ValueComponent={DocumentStatus}
+          />
+          <DocumentColumn
+            type="append"
+            label="Action"
+            ValueComponent={DocumentActions}
+          />
+          <DocumentEmptyList>No records to display</DocumentEmptyList>
+        </DocumentList>
+      </HatchifyProvider>
+    </ThemeProvider>
   );
 };
 
