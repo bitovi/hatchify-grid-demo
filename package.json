@@ -23,7 +23,7 @@
     "@hatchifyjs/core": "^0.2.9",
     "@hatchifyjs/express": "^1.0.3",
     "@hatchifyjs/koa": "^1.0.3",
-    "@hatchifyjs/react": "^0.1.12",
+    "@hatchifyjs/react": "^0.1.13",
     "@koa/cors": "^4.0.0",
     "commander": "^11.0.0",
     "cors": "^2.8.5",
