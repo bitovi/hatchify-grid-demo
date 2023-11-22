@@ -6,7 +6,7 @@ import {
   createJsonapiClient,
   HatchifyProvider,
 } from "@hatchifyjs/react";
-import schemas from "../schemas/schemas";
+import schemas from "../schemas";
 import {
   DocumentStatus,
   DocumentActions,
@@ -25,16 +25,6 @@ export const hatchedReact = hatchifyReact(
 const DocumentList = hatchedReact.components.Document.Collection;
 const DocumentColumn = hatchedReact.components.Document.Column;
 const DocumentEmptyList = hatchedReact.components.Document.Empty;
-
-// hatchedReact.model.Document.findAll({}).then(([documents]) => {
-//   documents[0].status
-// })
-
-// hatchedReact.model.Document.createOne({
-//   attributes: {
-//     status: "Pending"
-//   }
-// });
 
 const App: React.FC = () => {
   const [selected, setSelected] = useState<{ all: boolean; ids: string[] }>({

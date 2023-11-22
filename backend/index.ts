@@ -8,7 +8,7 @@ import koaCors from "@koa/cors";
 import cors from "cors";
 import { hatchifyExpress } from "@hatchifyjs/express";
 import { hatchifyKoa } from "@hatchifyjs/koa";
-import schemas from "../schemas/schemas";
+import schemas from "../schemas";
 
 dotenv.config({ path: "../.postgres.env" });
 
