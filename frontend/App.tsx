@@ -1,13 +1,12 @@
 // hatchify-app/frontend/App.tsx
 import { useState } from "react";
-import { createTheme } from "@mui/material";
-import { v2ToV1 } from "@hatchifyjs/core";
+import { createTheme, ThemeProvider } from "@mui/material";
 import {
   hatchifyReact,
-  MuiProvider,
   createJsonapiClient,
+  HatchifyProvider,
 } from "@hatchifyjs/react";
-import { Document } from "../schemas/Document";
+import schemas from "../schemas";
 import {
   DocumentStatus,
   DocumentActions,
@@ -20,10 +19,7 @@ const backend_url =
   import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
 
 export const hatchedReact = hatchifyReact(
-  v2ToV1({ Document }),
-  createJsonapiClient(backend_url, {
-    Document: { endpoint: "documents" },
-  })
+  createJsonapiClient(backend_url, schemas)
 );
 
 const DocumentList = hatchedReact.components.Document.Collection;
@@ -37,30 +33,32 @@ const App: React.FC = () => {
   });
 
   return (
-    <MuiProvider theme={theme}>
-      <ActionsRow selected={selected} />
-      <DocumentList
-        defaultSelected={selected}
-        onSelectedChange={(selected) => setSelected(selected)}
-      >
-        <DocumentColumn
-          type="replace"
-          field="date"
-          renderValue={DocumentDate}
-        />
-        <DocumentColumn
-          type="replace"
-          field="status"
-          ValueComponent={DocumentStatus}
-        />
-        <DocumentColumn
-          type="append"
-          label="Action"
-          ValueComponent={DocumentActions}
-        />
-        <DocumentEmptyList>No records to display</DocumentEmptyList>
-      </DocumentList>
-    </MuiProvider>
+    <ThemeProvider theme={theme}>
+      <HatchifyProvider>
+        <ActionsRow selected={selected} />
+        <DocumentList
+          defaultSelected={selected}
+          onSelectedChange={(selected) => setSelected(selected)}
+        >
+          <DocumentColumn
+            type="replace"
+            field="dueDate"
+            renderValue={DocumentDate}
+          />
+          <DocumentColumn
+            type="replace"
+            field="status"
+            ValueComponent={DocumentStatus}
+          />
+          <DocumentColumn
+            type="append"
+            label="Action"
+            ValueComponent={DocumentActions}
+          />
+          <DocumentEmptyList>No records to display</DocumentEmptyList>
+        </DocumentList>
+      </HatchifyProvider>
+    </ThemeProvider>
   );
 };
 

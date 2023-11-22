@@ -38,8 +38,7 @@ jobs:
           create_keypair_sm_entry: true
 
           docker_full_cleanup: true
-          app_directory_cleanup: true 
-          
+          app_directory_cleanup: true
+
           #stack_destroy: true
           tf_state_bucket_destroy: true
-          

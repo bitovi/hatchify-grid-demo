@@ -8,7 +8,7 @@ import koaCors from "@koa/cors";
 import cors from "cors";
 import { hatchifyExpress } from "@hatchifyjs/express";
 import { hatchifyKoa } from "@hatchifyjs/koa";
-import { Document } from "../schemas/Document";
+import schemas from "../schemas";
 
 dotenv.config({ path: "../.postgres.env" });
 
@@ -18,13 +18,10 @@ const options = new Command()
   .parse()
   .opts();
 
-const hatchedNode = getHatchFunction(options.framework)(
-  { Document },
-  {
-    prefix: "/api",
-    database: getDatabaseConfiguration(options.database),
-  }
-);
+const hatchedNode = getHatchFunction(options.framework)(schemas, {
+  prefix: "/api",
+  database: getDatabaseConfiguration(options.database),
+});
 
 (async () => {
   await hatchedNode.createDatabase();
@@ -72,7 +69,7 @@ function getDatabaseConfiguration(
 
   return {
     dialect: "sqlite",
-    storage: "example.sqlite",
+    storage: ":memory:",
   };
 }
 
