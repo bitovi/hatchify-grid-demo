@@ -40,5 +40,5 @@ jobs:
           docker_full_cleanup: true
           app_directory_cleanup: true
 
-          #stack_destroy: true
+          stack_destroy: true
           tf_state_bucket_destroy: true
