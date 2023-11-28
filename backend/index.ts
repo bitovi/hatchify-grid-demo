@@ -1,5 +1,4 @@
 import fs from "fs";
-import { Options } from "sequelize";
 import dotenv from "dotenv";
 import { Command } from "commander";
 import Express from "express";
@@ -36,40 +35,29 @@ function getHatchFunction(framework: "express" | "koa") {
   return hatchifyKoa;
 }
 
-function getDatabaseConfiguration(
-  database: "postgres" | "rds" | "sqlite"
-): Options {
-  if (database === "postgres")
-    return {
-      dialect: "postgres",
-      host: process.env.PGHOST || "",
-      port: Number(process.env.PGPORT) || 5432,
-      database: process.env.PGDATABASE || "",
-      username: process.env.PG_USER || "",
-      password: process.env.PG_PASSWORD || "",
-    };
+function getDatabaseConfiguration(database: "postgres" | "rds" | "sqlite") {
+  if (database === "sqlite") {
+    return { uri: "sqlite://localhost/:memory" };
+  }
 
-  if (database === "rds") {
-    return {
-      dialect: "postgres",
-      dialectOptions: {
-        ssl: {
-          rejectUnauthorized: false,
-          ca: [fs.readFileSync(__dirname + "/../rds-combined-ca-bundle.pem")],
-        },
-      },
-      host: process.env.PGHOST,
-      port: Number(process.env.PGPORT),
-      ssl: true,
-      database: process.env.PGDATABASE,
-      username: process.env.PG_USER,
-      password: process.env.PG_PASSWORD,
-    };
+  const postgresDatabaseUri = `${
+    database === "rds" ? "postgres" : database
+  }://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PGHOST}:${
+    process.env.PGPORT || 5432
+  }/${process.env.PGDATABASE}`;
+
+  if (database === "postgres") {
+    return { uri: postgresDatabaseUri };
   }
 
   return {
-    dialect: "sqlite",
-    storage: ":memory:",
+    uri: `${postgresDatabaseUri}?ssl=true`,
+    additionalOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+        ca: [fs.readFileSync(__dirname + "/../rds-combined-ca-bundle.pem")],
+      },
+    },
   };
 }
 
