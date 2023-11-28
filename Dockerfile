@@ -11,7 +11,7 @@ WORKDIR /app
 RUN apk update && apk add npm nodejs~=18
 COPY package*.json ./
 RUN npm install
-COPY schemas/ schemas/
+COPY schemas.ts schemas.ts
 
 FROM base AS backend
 COPY backend/ backend/
