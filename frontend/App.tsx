@@ -43,7 +43,7 @@ const App: React.FC = () => {
           <DocumentColumn
             type="replace"
             field="dueDate"
-            renderValue={DocumentDate}
+            ValueComponent={DocumentDate}
           />
           <DocumentColumn
             type="replace"
