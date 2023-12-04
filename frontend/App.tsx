@@ -9,7 +9,8 @@ import {
 import schemas from "../schemas";
 import {
   DocumentStatus,
-  DocumentActions,
+  DocumentActionsData,
+  DocumentActionsHeader,
   DocumentDate,
   ActionsRow,
 } from "./components/DocumentTable";
@@ -43,17 +44,18 @@ const App: React.FC = () => {
           <DocumentColumn
             type="replace"
             field="dueDate"
-            ValueComponent={DocumentDate}
+            DataValueComponent={DocumentDate}
           />
           <DocumentColumn
             type="replace"
             field="status"
-            ValueComponent={DocumentStatus}
+            DataValueComponent={DocumentStatus}
           />
           <DocumentColumn
             type="append"
             label="Action"
-            ValueComponent={DocumentActions}
+            DataValueComponent={DocumentActionsData}
+            HeaderValueComponent={DocumentActionsHeader}
           />
           <DocumentEmptyList>No records to display</DocumentEmptyList>
         </DocumentList>
