@@ -1,3 +1,4 @@
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import { Button, Icon, IconButton } from "@mui/material";
 
 export const ActionsRow: React.FC<{
@@ -78,7 +79,7 @@ export function DocumentStatus({ value, record, attributeSchema }: any) {
   );
 }
 
-export function DocumentActions({ record }: any) {
+export function DocumentActionsData({ record }: any) {
   return (
     <>
       <IconButton
@@ -96,5 +97,24 @@ export function DocumentActions({ record }: any) {
         visibility
       </IconButton>
     </>
+  );
+}
+
+export function DocumentActionsHeader({column}: any) {
+  return (
+    <div
+      style={{
+        alignItems: "center",
+        display: "flex",
+        gap: "5px"
+      }}
+    >
+      <strong>{column.label}</strong>
+      <HomeRepairServiceIcon
+        sx={{
+          transform: "translateY(-2px)"
+        }}
+      />
+    </div>
   );
 }
