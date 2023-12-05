@@ -44,7 +44,7 @@ function getDatabaseConfiguration(database: "postgres" | "rds" | "sqlite") {
     database === "rds" ? "postgres" : database
   }://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PGHOST}:${
     process.env.PGPORT || 5432
-  }/${process.env.PGDATABASE}`;
+  }/${process.env.PGDATABASE || "postgres"}`;
 
   if (database === "postgres") {
     return { uri: postgresDatabaseUri };

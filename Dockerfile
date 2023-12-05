@@ -15,11 +15,8 @@ COPY schemas.ts schemas.ts
 FROM base AS backend
 COPY backend/ backend/
 COPY tsconfig*.json ./
-EXPOSE $BACKEND_PORT
-
-FROM base AS frontend
 COPY frontend/ frontend/
 COPY public/ public/
 COPY index.html tsconfig.json vite.config.ts ./
-
+EXPOSE $BACKEND_PORT
 CMD npm run "dev:$FRAMEWORK:$DB_ENGINE"
