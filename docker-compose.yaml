@@ -14,8 +14,9 @@ services:
     ports:
       - 3000:3000
     environment:
-      - FRAMEWORK=koa
-      - DB_ENGINE=sqlite
+      - BACKEND=koa
+      - DATABASE=sqlite
+      - DB_URI=sqlite://localhost/:memory
     networks:
       - hatch_sqlite
 
@@ -32,11 +33,9 @@ services:
     ports:
       - 3001:3000
     environment:
-      - FRAMEWORK=koa
-      - DB_ENGINE=postgres
-      - PGHOST=postgres_db
-      - PG_USER=postgres
-      - PG_PASSWORD=postgres
+      - BACKEND=koa
+      - DATABASE=postgres
+      - DB_URI=postgres://postgres:postgres@postgres_db:5432/postgres
     networks:
       - hatch_postgres
     depends_on:

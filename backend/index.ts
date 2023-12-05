@@ -36,29 +36,17 @@ function getHatchFunction(framework: "express" | "koa") {
 }
 
 function getDatabaseConfiguration(database: "postgres" | "rds" | "sqlite") {
-  if (database === "sqlite") {
-    return { uri: "sqlite://localhost/:memory" };
-  }
-
-  const postgresDatabaseUri = `${
-    database === "rds" ? "postgres" : database
-  }://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PGHOST}:${
-    process.env.PGPORT || 5432
-  }/${process.env.PGDATABASE || "postgres"}`;
-
-  if (database === "postgres") {
-    return { uri: postgresDatabaseUri };
-  }
-
-  return {
-    uri: `${postgresDatabaseUri}?ssl=true`,
-    additionalOptions: {
-      ssl: {
-        rejectUnauthorized: false,
-        ca: [fs.readFileSync(__dirname + "/../rds-combined-ca-bundle.pem")],
-      },
-    },
-  };
+  return database === "rds"
+    ? {
+        uri: `${process.env.DB_URI}?ssl=true`,
+        additionalOptions: {
+          ssl: {
+            rejectUnauthorized: false,
+            ca: [fs.readFileSync(__dirname + "/../rds-combined-ca-bundle.pem")],
+          },
+        },
+      }
+    : { uri: process.env.DB_URI };
 }
 
 async function setupApp(middleware: any) {
