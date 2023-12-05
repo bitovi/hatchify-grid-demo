@@ -16,7 +16,6 @@ services:
     environment:
       #- FRAMEWORK=koa
       - DB_ENGINE=sqlite
-      - VITE_BACKEND_URL=http://hatchify-grid-demo.bitovi-sandbox.com:3000/api
     networks:
       - hatch_sqlite
 
@@ -38,7 +37,6 @@ services:
       - PGHOST=postgres_db
       - PG_USER=postgres
       - PG_PASSWORD=postgres
-      - VITE_BACKEND_URL=http://hatchify-grid-demo.bitovi-sandbox.com:3001/api
     networks:
       - hatch_postgres
     depends_on:

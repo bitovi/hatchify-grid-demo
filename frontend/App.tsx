@@ -15,9 +15,7 @@ import {
   ActionsRow,
 } from "./components/DocumentTable";
 
-const backend_url =
-  // @ts-expect-error
-  import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api";
+const backend_url = "/api";
 
 export const hatchedReact = hatchifyReact(
   createJsonapiClient(backend_url, schemas)
