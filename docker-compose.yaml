@@ -42,42 +42,6 @@ services:
     depends_on:
       - postgres_db
 
-  frontend_sqlite:
-    container_name: frontend_sqlite
-    build:
-      context: .
-      target: frontend
-    restart: unless-stopped
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - 5173:5173
-    networks:
-      - hatch_sqlite
-    depends_on:
-      - backend_sqlite
-    environment:
-      - VITE_BACKEND_URL=http://hatchify-grid-demo.bitovi-sandbox.com:3000/api
-
-  frontend_postgres:
-    container_name: frontend_postgres
-    build:
-      context: .
-      target: frontend
-    restart: unless-stopped
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - 5174:5173
-    networks:
-      - hatch_postgres
-    depends_on:
-      - backend_postgres
-    environment:
-      - VITE_BACKEND_URL=http://hatchify-grid-demo.bitovi-sandbox.com:3001/api
-
   postgres_db:
     image: postgres:15.3-alpine
     restart: always
