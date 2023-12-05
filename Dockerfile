@@ -17,11 +17,10 @@ FROM base AS backend
 COPY backend/ backend/
 COPY tsconfig*.json ./
 EXPOSE $BACKEND_PORT
-CMD npm run "dev:backend:$FRAMEWORK:$DB_ENGINE"
 
 FROM base AS frontend
 COPY frontend/ frontend/
 COPY public/ public/
 COPY index.html tsconfig.json vite.config.ts ./
-EXPOSE $FRONTEND_PORT
-CMD npm run dev:frontend
+
+CMD npm run "dev:$FRAMEWORK:$DB_ENGINE"

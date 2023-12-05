@@ -4,39 +4,36 @@
   "version": "0.1.0",
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "dev:frontend": "vite",
-    "dev:backend:koa:sqlite": "nodemon --esm backend/index.ts -- -f koa -d sqlite",
-    "dev:backend:express:sqlite": "nodemon --esm backend/index.ts -- -f express -d sqlite",
-    "dev:backend:koa:postgres": "nodemon --esm backend/index.ts -- -f koa -d postgres",
-    "dev:backend:express:postgres": "nodemon --esm backend/index.ts -- -f express -d postgres",
-    "build:frontend": "tsc && vite build --outDir dist/frontend",
-    "build:backend": "tsc --outDir dist/backend --project tsconfig.backend.json",
-    "start:frontend": "vite preview --outDir dist/frontend",
-    "start:backend:koa:sqlite": "node dist/backend/backend/index.js -f koa -d sqlite",
-    "start:backend:express:sqlite": "node dist/backend/backend/index.js -f express -d sqlite",
-    "start:backend:koa:postgres": "node dist/backend/backend/index.js -f koa -d postgres",
-    "start:backend:express:postgres": "node dist/backend/backend/index.js -f express -d postgres",
-    "start:backend:koa:rds": "node dist/backend/backend/index.js -f koa -d rds",
-    "start:backend:express:rds": "node dist/backend/backend/index.js -f express -d rds"
+    "dev:koa:sqlite": "nodemon --esm backend/index.ts -- -f koa -d sqlite",
+    "dev:express:sqlite": "nodemon --esm backend/index.ts -- -f express -d sqlite",
+    "dev:koa:postgres": "nodemon --esm backend/index.ts -- -f koa -d postgres",
+    "dev:express:postgres": "nodemon --esm backend/index.ts -- -f express -d postgres",
+    "build": "tsc --outDir dist/backend --project tsconfig.backend.json",
+    "start:koa:sqlite": "node dist/backend/backend/index.js -f koa -d sqlite",
+    "start:express:sqlite": "node dist/backend/backend/index.js -f express -d sqlite",
+    "start:koa:postgres": "node dist/backend/backend/index.js -f koa -d postgres",
+    "start:express:postgres": "node dist/backend/backend/index.js -f express -d postgres",
+    "start:koa:rds": "node dist/backend/backend/index.js -f koa -d rds",
+    "start:express:rds": "node dist/backend/backend/index.js -f express -d rds"
   },
   "dependencies": {
     "@hatchifyjs/core": "^0.3.4",
     "@hatchifyjs/express": "^1.1.2",
     "@hatchifyjs/koa": "^1.1.2",
     "@hatchifyjs/react": "^0.1.26",
-    "@koa/cors": "^4.0.0",
     "commander": "^11.0.0",
-    "cors": "^2.8.5",
     "cross-var": "1.1.0",
     "dotenv-cli": "3.0.0",
     "express": "^4.18.2",
     "koa": "^2.14.2",
+    "koa-connect": "^2.1.0",
     "pg": "^8.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vite": "^4.3.9"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -56,7 +53,6 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9"
+    "typescript": "^5.0.2"
   }
 }
