@@ -4,7 +4,6 @@
 ## using alpine and then installing node reduces size from 375MB to 269MB
 FROM alpine AS base
 ENV BACKEND_PORT=3000
-ENV FRONTEND_PORT=5173
 ENV FRAMEWORK=koa
 ENV DB_ENGINE=sqlite
 WORKDIR /app
