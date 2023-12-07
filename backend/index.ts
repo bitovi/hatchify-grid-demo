@@ -23,7 +23,7 @@ const hatchedNode = getHatchFunction(options.framework)(schemas, {
 });
 
 (async () => {
-  await hatchedNode.createDatabase();
+  await hatchedNode.modelSync({ alter: true });
 
   (await setupApp(hatchedNode.middleware.allModels.all)).listen(3000, () => {
     console.log("Started on port 3000");
