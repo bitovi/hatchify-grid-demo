@@ -1,4 +1,3 @@
-// hatchify-app/frontend/App.tsx
 import { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import {
@@ -6,7 +5,7 @@ import {
   createJsonapiClient,
   HatchifyProvider,
 } from "@hatchifyjs/react";
-import schemas from "../schemas";
+import * as schemas from "../schemas";
 import {
   DocumentStatus,
   DocumentActionsData,
@@ -15,11 +14,7 @@ import {
   ActionsRow,
 } from "./components/DocumentTable";
 
-const backend_url = "/api";
-
-export const hatchedReact = hatchifyReact(
-  createJsonapiClient(backend_url, schemas)
-);
+export const hatchedReact = hatchifyReact(createJsonapiClient("/api", schemas));
 
 const DocumentList = hatchedReact.components.Document.Collection;
 const DocumentColumn = hatchedReact.components.Document.Column;

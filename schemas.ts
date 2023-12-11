@@ -12,32 +12,29 @@ import {
   hasMany,
 } from "@hatchifyjs/core";
 
-export const schemas = {
-  Document: {
-    name: "Document",
-    attributes: {
-      name: string(),
-      dueDate: datetime(),
-      importance: integer(),
-      lastUpdatedDate: dateonly(),
-      notes: text(),
-      complete: boolean(),
-      uuid: uuid(),
-      status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
-    },
-    relationships: {
-      uploadedBy: belongsTo("User"),
-    },
+export const Document = {
+  name: "Document",
+  attributes: {
+    name: string(),
+    dueDate: datetime(),
+    importance: integer(),
+    lastUpdatedDate: dateonly(),
+    notes: text(),
+    complete: boolean(),
+    uuid: uuid(),
+    status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
   },
-  User: {
-    name: "User",
-    attributes: {
-      name: string(),
-    },
-    relationships: {
-      documents: hasMany("Document"),
-    },
+  relationships: {
+    uploadedBy: belongsTo("User"),
   },
-} satisfies Record<string, PartialSchema>;
+} satisfies PartialSchema;
 
-export default schemas;
+export const User = {
+  name: "User",
+  attributes: {
+    name: string(),
+  },
+  relationships: {
+    documents: hasMany("Document"),
+  },
+} satisfies PartialSchema;

@@ -1,4 +1,4 @@
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import { Button, Icon, IconButton } from "@mui/material";
 
 export const ActionsRow: React.FC<{
@@ -40,7 +40,7 @@ export const ActionsRow: React.FC<{
   );
 };
 
-export function DocumentDate({ value, record, attributeSchema }: any) {
+export function DocumentDate({ value }: { value: string }) {
   const date = new Date(value);
   const yyyy = date.getFullYear();
   const mm = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -61,7 +61,7 @@ export function DocumentDate({ value, record, attributeSchema }: any) {
   );
 }
 
-export function DocumentStatus({ value, record, attributeSchema }: any) {
+export function DocumentStatus({ value }: { value: string }) {
   return (
     value && (
       <div
@@ -79,7 +79,7 @@ export function DocumentStatus({ value, record, attributeSchema }: any) {
   );
 }
 
-export function DocumentActionsData({ record }: any) {
+export function DocumentActionsData({ record }: { record: { name: string } }) {
   return (
     <>
       <IconButton
@@ -100,19 +100,23 @@ export function DocumentActionsData({ record }: any) {
   );
 }
 
-export function DocumentActionsHeader({column}: any) {
+export function DocumentActionsHeader({
+  column,
+}: {
+  column: { label: string };
+}) {
   return (
     <div
       style={{
         alignItems: "center",
         display: "flex",
-        gap: "5px"
+        gap: "5px",
       }}
     >
       <strong>{column.label}</strong>
       <HomeRepairServiceIcon
         sx={{
-          transform: "translateY(-2px)"
+          transform: "translateY(-2px)",
         }}
       />
     </div>

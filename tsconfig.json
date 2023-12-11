@@ -23,6 +23,6 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true
   },
-  "include": ["frontend", "backend", "schemas", "vite.config.ts", "schemas.ts"],
+  "include": ["frontend", "backend", "schemas.ts", "vite.config.ts"],
   "exclude": ["node_modules"]
 }
