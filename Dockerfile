@@ -9,7 +9,7 @@ ENV DATABASE=sqlite
 WORKDIR /app
 RUN apk update && apk add npm nodejs~=18
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY schemas.ts schemas.ts
 
 FROM base AS backend
