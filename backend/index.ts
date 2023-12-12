@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import { Command } from "commander";
 import * as schemas from "../schemas";
 import {
@@ -7,8 +6,6 @@ import {
   setupExpress,
   setupKoa,
 } from "./util";
-
-dotenv.config({ path: "../.postgres.env" });
 
 const options = new Command()
   .requiredOption("-f, --framework <express|koa>", "Node framework")
