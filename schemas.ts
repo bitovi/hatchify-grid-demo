@@ -16,9 +16,9 @@ export const Document = {
   name: "Document",
   attributes: {
     name: string(),
-    dueDate: datetime(),
+    dueDate: dateonly(),
     importance: integer(),
-    lastUpdatedDate: dateonly(),
+    lastUpdated: datetime(),
     notes: text(),
     complete: boolean(),
     uuid: uuid(),
