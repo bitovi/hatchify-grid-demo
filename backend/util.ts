@@ -2,7 +2,6 @@ import fs from "fs";
 import Express from "express";
 import Koa from "koa";
 import c2k from "koa-connect";
-// @ts-expect-error @todo make TS happy
 import { createServer as createViteServer } from "vite";
 import { hatchifyExpress } from "@hatchifyjs/express";
 import { hatchifyKoa } from "@hatchifyjs/koa";
