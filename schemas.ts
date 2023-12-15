@@ -12,7 +12,7 @@ import {
   hasMany,
 } from "@hatchifyjs/core";
 
-export const Document = {
+export const Document: PartialSchema = {
   name: "Document",
   attributes: {
     name: string(),
@@ -27,9 +27,9 @@ export const Document = {
   relationships: {
     uploadedBy: belongsTo("User"),
   },
-} satisfies PartialSchema;
+};
 
-export const User = {
+export const User: PartialSchema = {
   name: "User",
   attributes: {
     name: string(),
@@ -37,4 +37,4 @@ export const User = {
   relationships: {
     documents: hasMany("Document"),
   },
-} satisfies PartialSchema;
+};
