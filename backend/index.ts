@@ -1,11 +1,11 @@
 import { Command } from "commander";
-import * as schemas from "../schemas";
+import * as schemas from "../schemas.js";
 import {
   getDatabaseConfiguration,
   getHatchFunction,
   setupExpress,
   setupKoa,
-} from "./util";
+} from "./util.js";
 
 const options = new Command()
   .requiredOption("-f, --framework <express|koa>", "Node framework")

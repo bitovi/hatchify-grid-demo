@@ -1,9 +1,10 @@
 {
   "name": "hatchify-grid-demo",
   "private": true,
+  "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "dev:koa:sqlite": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f koa -d sqlite",
     "dev:express:sqlite": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f express -d sqlite",
     "dev:koa:postgres": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f koa -d postgres",
@@ -22,8 +23,8 @@
     "@hatchifyjs/core": "^0.3.6",
     "@hatchifyjs/express": "^1.3.6",
     "@hatchifyjs/koa": "^1.3.6",
-    "@hatchifyjs/react": "^0.1.32",
-    "@mui/material": "^5.14.20",
+    "@hatchifyjs/react": "^0.1.34",
+    "@mui/material": "^5.15.0",
     "commander": "^11.1.0",
     "express": "^4.18.2",
     "koa": "^2.14.2",
@@ -37,17 +38,17 @@
   "devDependencies": {
     "@types/koa": "^2.13.12",
     "@types/pg": "^8.10.9",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "eslint": "^8.53.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "nodemon": "^3.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.7"
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
   }
 }
