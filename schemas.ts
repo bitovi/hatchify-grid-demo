@@ -19,7 +19,7 @@ export const Document: PartialSchema = {
     dueDate: dateonly(),
     importance: integer(),
     lastUpdated: datetime(),
-    notes: text(),
+    notes: text({ maxRenderLength: 80 }),
     complete: boolean(),
     uuid: uuid(),
     status: enumerate({ values: ["Pending", "Failed", "Completed"] }),
