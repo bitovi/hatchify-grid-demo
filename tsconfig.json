@@ -4,7 +4,11 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "jsx": "react-jsx",
     "composite": true,
     "declaration": true,
@@ -23,6 +27,13 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true
   },
-  "include": ["frontend", "backend", "schemas.ts", "vite.config.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "frontend",
+    "backend",
+    "schemas.ts",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
