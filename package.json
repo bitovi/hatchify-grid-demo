@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
+    "dev": "npm run dev:koa:sqlite",
     "dev:koa:sqlite": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f koa -d sqlite",
     "dev:express:sqlite": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f express -d sqlite",
     "dev:koa:postgres": "nodemon backend/index.ts --watch backend --watch schemas.ts -- -f koa -d postgres",
@@ -20,10 +21,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@hatchifyjs/core": "^0.3.10",
-    "@hatchifyjs/express": "^1.3.10",
-    "@hatchifyjs/koa": "^1.3.10",
-    "@hatchifyjs/react": "^0.1.39",
+    "@hatchifyjs/core": "^0.3.11",
+    "@hatchifyjs/express": "^1.3.11",
+    "@hatchifyjs/koa": "^1.3.11",
+    "@hatchifyjs/react": "^0.1.40",
     "@mui/material": "^5.15.0",
     "commander": "^11.1.0",
     "express": "^4.18.2",
